@@ -1,19 +1,18 @@
 //
-//  ViewController.swift
+//  DiscoverViewController.swift
 //  MessengerIOS
 //
 //  Created by Rustam Keneev on 8/1/21.
 //
 
+import Foundation
 import UIKit
 
-class ViewController: UIViewController {
-
+class DiscoverViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .brown
     }
-
-
+    
 }
-
