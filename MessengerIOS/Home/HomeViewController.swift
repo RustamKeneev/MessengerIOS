@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController{
+    
+    
+    private lazy var viewModel: FriendsStoryViewModel = {
+        return FriendsStoryViewModel(delegate: self)
+    }()
     
     private lazy var profileTabBarImage: UIImageView = {
         let view = UIImageView()
@@ -150,9 +155,34 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    private lazy var friendStoryUIView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.addSubview(friendsStoryCollectionView)
+        friendsStoryCollectionView.snp.makeConstraints { (make) in
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+        return view
+    }()
+    
+    private lazy var friendsStoryCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.dataSource = self
+        cv.delegate = self
+        cv.backgroundColor = .clear
+        cv.register(FriendsStoryCell.self, forCellWithReuseIdentifier: FriendsStoryCell.reuseIdentifierCell)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        viewModel.fetchFriendsStory()
         
         navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.barStyle = .default
@@ -171,6 +201,8 @@ class HomeViewController: UIViewController {
         view.addSubview(storyViews)
         view.addSubview(youStoryUIView)
         view.addSubview(addYouStoryLabel)
+        view.addSubview(friendStoryUIView)
+//        view.addSubview(friendsStoryCollectionView)
     }
     
     
@@ -203,8 +235,38 @@ class HomeViewController: UIViewController {
             make.top.equalTo(youStoryUIView.snp.bottom).offset(8)
             make.left.equalTo(youStoryUIView.snp.left)
         }
+        
+        friendStoryUIView.snp.makeConstraints { (make) in
+            make.top.equalTo(storyViews.snp.top)
+            make.bottom.equalTo(addYouStoryLabel.snp.bottom)
+            make.left.equalTo(youStoryUIView.snp.right)
+            make.right.equalToSuperview()
+        }
+        
+        
     }
 }
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.friendsStory.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendsStoryCell.reuseIdentifierCell, for: indexPath) as! FriendsStoryCell
+        let item = viewModel.friendsStory[indexPath.row]
+        cell.setupData(data: item)
+        return cell
+    }
+}
+
+extension HomeViewController: FriendsStoryDelegate {
+    func loadFriendsStory() {
+        friendsStoryCollectionView.reloadData()
+    }
+}
+
 
 extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){

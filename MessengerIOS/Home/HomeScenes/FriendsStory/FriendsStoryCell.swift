@@ -11,55 +11,56 @@ import Kingfisher
 
 class FriendsStoryCell: UICollectionViewCell {
     
-    private lazy var FriendStoryUIVIew: UIView = {
+    static let reuseIdentifierCell = "FriendsStoryCellReuse"
+
+    
+    private lazy var friendStoryUIVIew: UIView = {
         let view = UIView()
         view.backgroundColor = .green
+        view.layer.cornerRadius = 26
         return view
     }()
     
-//    private lazy var itemTitle: UILabel = {
-//        let label = UILabel()
-//        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-//        label.textColor = .white
-//        label.numberOfLines = 0
-//        return label
-//    }()
-//
-//    private lazy var itemImage: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.contentMode = .scaleAspectFill
-//        imageView.clipsToBounds = true
-//        return imageView
-//    }()
-//
-//    private lazy var blackView: UIView = {
-//       let view = UIView()
-//        view.backgroundColor = .init(hex: "99000000")
-//        return view
-//    }()
+    private lazy var friendStoryImage: UIImageView = {
+        let view = UIImageView()
     
+        return view
+    }()
+    
+    private lazy var statusUIView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .green
+        view.layer.cornerRadius = 7
+        return view
+    }()
+    
+    
+    private lazy var whiteRound: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 8
+        view.addSubview(statusUIView)
+        statusUIView.snp.makeConstraints { (make) in
+            make.top.bottom.equalToSuperview().inset(2)
+            make.leading.trailing.equalToSuperview().inset(2)
+            make.height.width.equalTo(14)
+        }
+        return view
+    }()
+    
+    private lazy var friendsStoryLabel: UILabel = {
+        let view = UILabel()
+        view.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        view.textColor = .gray
+        return view
+    }()
+   
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
         configure()
-//        contentView.addSubview(FriendStoryUIVIew)
-//        contentView.addSubview(blackView)
-//        contentView.addSubview(itemTitle)
-        
-//        blackView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
-//
-//        itemImage.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
-//
-//        itemTitle.snp.makeConstraints { make in
-//            make.bottom.equalTo(itemImage.snp.bottom)
-//            make.leading.trailing.equalToSuperview().inset(20)
-//            make.height.equalTo(150)
-//        }
+
     }
     
     func configure() {
@@ -68,10 +69,35 @@ class FriendsStoryCell: UICollectionViewCell {
     }
     
     func addSubViews() {
-        
+        contentView.addSubview(friendStoryUIVIew)
+        contentView.addSubview(friendStoryImage)
+        contentView.addSubview(whiteRound)
+        contentView.addSubview(friendsStoryLabel)
     }
     
+    
     func addConstraints() {
+        friendStoryUIVIew.snp.makeConstraints { (make) in
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.height.width.equalTo(52)
+        }
+        
+        friendStoryImage.snp.makeConstraints { (make) in
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        whiteRound.snp.makeConstraints { (make) in
+            make.bottom.equalTo(friendStoryUIVIew).offset(-2)
+            make.right.equalTo(friendStoryUIVIew.snp.right).offset(-4)
+            make.height.width.equalTo(16)
+        }
+        
+        friendsStoryLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(friendStoryImage.snp.bottom).offset(6)
+            make.left.equalTo(friendStoryImage)
+        }
         
     }
     
@@ -80,8 +106,8 @@ class FriendsStoryCell: UICollectionViewCell {
     }
     
     func setupData(data: FriendStory) {
-//        itemImage.kf.setImage(with: URL(string: data.urlToImage ?? ""))
-//        itemTitle.text = data.title
-
+        friendStoryImage.image = data.image
+//        whiteRound.backgroundColor = data.whiteView
+        friendsStoryLabel.text = data.text
     }
 }

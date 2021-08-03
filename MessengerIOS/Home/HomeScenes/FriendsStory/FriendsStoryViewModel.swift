@@ -25,11 +25,12 @@ final class FriendsStoryViewModel{
         self.delegate = delegate
     }
     
-    func fetchSCatalogProducts() {
-//        productsCatalog.append(CatalogCustomsProductsModel(image: #imageLiteral(resourceName: "drug"), text: "Лекарства", type: .CatalogCustomProducts, color: .white, textColor: .black))
-//        productsCatalog.append(CatalogCustomsProductsModel(image: #imageLiteral(resourceName: "spring"), text: "Травы", type: .CatalogCustomProducts, color: .white, textColor: .black))
-//        productsCatalog.append(CatalogCustomsProductsModel(image: #imageLiteral(resourceName: "bads"), text: "БАДы", type: .CatalogCustomProducts, color: .white, textColor: .black))
-        
+    func fetchFriendsStory() {
+        friendsStory.append(FriendStory(image: #imageLiteral(resourceName: "friends_story"), whiteView: UIColor.white, statusView: UIColor.green, text: "Joshua", textColor: UIColor.green))
+        friendsStory.append(FriendStory(image: #imageLiteral(resourceName: "martin"), whiteView: UIColor.white, statusView: UIColor.green, text: "Martin", textColor: UIColor.green))
+        friendsStory.append(FriendStory(image: #imageLiteral(resourceName: "karen"), whiteView: UIColor.white, statusView: UIColor.green, text: "Karen", textColor: UIColor.green))
+        friendsStory.append(FriendStory(image: #imageLiteral(resourceName: "friends_story"), whiteView: UIColor.white, statusView: UIColor.green, text: "Joshua", textColor: UIColor.green))
+        friendsStory.append(FriendStory(image: #imageLiteral(resourceName: "friends_story"), whiteView: UIColor.white, statusView: UIColor.green, text: "Joshua", textColor: UIColor.green))
         delegate?.loadFriendsStory()
     }
 }

@@ -58,5 +58,5 @@ extension UIColor {
     static let lightGreyColor = UIColor.init(hex: "#E5E5E5")
     static let GreyColorCCCCCC = UIColor.init(hex: "#CCCCCC")
     static let myGreyColor = UIColor.init(hex: "#f2f2f2")
-
+    static let friendsStoryStatusColor = UIColor.init(hex: "#UIView")
 }
