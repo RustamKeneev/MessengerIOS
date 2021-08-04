@@ -12,6 +12,9 @@
 		FFDAFC0526B717B3001173ED /* FriendsStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDAFC0426B717B3001173ED /* FriendsStoryCell.swift */; };
 		FFDAFC0B26B82B41001173ED /* FriendStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDAFC0A26B82B41001173ED /* FriendStory.swift */; };
 		FFDAFC1126B839DB001173ED /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDAFC1026B839DB001173ED /* Repository.swift */; };
+		FFDAFC1A26B9BBF4001173ED /* HomeChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDAFC1926B9BBF4001173ED /* HomeChats.swift */; };
+		FFDAFC1D26B9BD85001173ED /* HomeChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDAFC1C26B9BD85001173ED /* HomeChatsCell.swift */; };
+		FFDAFC2026B9BEE3001173ED /* HomeChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDAFC1F26B9BEE3001173ED /* HomeChatsViewModel.swift */; };
 		FFE127EB26B69454001B2E2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE127EA26B69454001B2E2B /* AppDelegate.swift */; };
 		FFE127ED26B69454001B2E2B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE127EC26B69454001B2E2B /* SceneDelegate.swift */; };
 		FFE127F426B69455001B2E2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE127F326B69455001B2E2B /* Assets.xcassets */; };
@@ -31,6 +34,9 @@
 		FFDAFC0426B717B3001173ED /* FriendsStoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsStoryCell.swift; sourceTree = "<group>"; };
 		FFDAFC0A26B82B41001173ED /* FriendStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStory.swift; sourceTree = "<group>"; };
 		FFDAFC1026B839DB001173ED /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		FFDAFC1926B9BBF4001173ED /* HomeChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChats.swift; sourceTree = "<group>"; };
+		FFDAFC1C26B9BD85001173ED /* HomeChatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChatsCell.swift; sourceTree = "<group>"; };
+		FFDAFC1F26B9BEE3001173ED /* HomeChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChatsViewModel.swift; sourceTree = "<group>"; };
 		FFE127E726B69454001B2E2B /* MessengerIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE127EA26B69454001B2E2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFE127EC26B69454001B2E2B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +82,7 @@
 		FFDAFBFF26B715D4001173ED /* HomeScenes */ = {
 			isa = PBXGroup;
 			children = (
+				FFDAFC1826B9BBAC001173ED /* HomeChats */,
 				FFDAFC0026B715ED001173ED /* FriendsStory */,
 			);
 			path = HomeScenes;
@@ -94,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				FFDAFC0A26B82B41001173ED /* FriendStory.swift */,
+				FFDAFC1926B9BBF4001173ED /* HomeChats.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -104,6 +112,15 @@
 				FFDAFC1026B839DB001173ED /* Repository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		FFDAFC1826B9BBAC001173ED /* HomeChats */ = {
+			isa = PBXGroup;
+			children = (
+				FFDAFC1C26B9BD85001173ED /* HomeChatsCell.swift */,
+				FFDAFC1F26B9BEE3001173ED /* HomeChatsViewModel.swift */,
+			);
+			path = HomeChats;
 			sourceTree = "<group>";
 		};
 		FFE127DE26B69454001B2E2B = {
@@ -299,12 +316,15 @@
 			files = (
 				FFDAFC0226B7165E001173ED /* FriendsStoryViewModel.swift in Sources */,
 				FFE1280926B6A581001B2E2B /* MainTabBar.swift in Sources */,
+				FFDAFC1A26B9BBF4001173ED /* HomeChats.swift in Sources */,
 				FFDAFC0526B717B3001173ED /* FriendsStoryCell.swift in Sources */,
 				FFE127EB26B69454001B2E2B /* AppDelegate.swift in Sources */,
 				FFE1280D26B6A6EE001B2E2B /* PeopleViewController.swift in Sources */,
 				FFDAFC1126B839DB001173ED /* Repository.swift in Sources */,
+				FFDAFC2026B9BEE3001173ED /* HomeChatsViewModel.swift in Sources */,
 				FFE1281326B6A78B001B2E2B /* DiscoverViewController.swift in Sources */,
 				FFE127ED26B69454001B2E2B /* SceneDelegate.swift in Sources */,
+				FFDAFC1D26B9BD85001173ED /* HomeChatsCell.swift in Sources */,
 				FFDAFC0B26B82B41001173ED /* FriendStory.swift in Sources */,
 				FFE1280626B6A377001B2E2B /* HomeViewController.swift in Sources */,
 				FFE1281826B6BACF001B2E2B /* Extensions.swift in Sources */,

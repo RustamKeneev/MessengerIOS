@@ -178,6 +178,106 @@ class HomeViewController: UIViewController{
         return cv
     }()
     
+    private lazy var advanceUIView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.addSubview(advanceLogoImage)
+        view.addSubview(advanceTitleLabel)
+        view.addSubview(adUIView)
+        view.addSubview(adDescriptionLabel)
+        view.addSubview(viewMoreLabel)
+        view.addSubview(adAnimationImage)
+        
+        advanceLogoImage.snp.makeConstraints { (make) in
+            make.top.bottom.equalToSuperview().inset(8)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        advanceTitleLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(advanceLogoImage.snp.top)
+            make.left.equalTo(advanceLogoImage.snp.right).offset(12)
+        }
+        
+        adUIView.snp.makeConstraints { (make) in
+            make.top.equalTo(advanceTitleLabel.snp.top)
+            make.left.equalTo(advanceTitleLabel.snp.right).offset(6)
+            make.bottom.equalTo(advanceTitleLabel.snp.bottom)
+            make.width.equalTo(22)
+            make.height.equalTo(16)
+        }
+        
+        adDescriptionLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(advanceTitleLabel.snp.bottom).offset(4)
+            make.left.equalTo(advanceTitleLabel.snp.left)
+        }
+        
+        viewMoreLabel.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview().offset(-8)
+            make.left.equalTo(adDescriptionLabel)
+        }
+        
+        adAnimationImage.snp.makeConstraints { (make) in
+            make.top.bottom.equalToSuperview().inset(8)
+            make.right.equalToSuperview().offset(-16)
+            make.height.width.equalTo(60)
+        }
+        return view
+    }()
+    
+    private lazy var advanceLogoImage: UIImageView = {
+        let view = UIImageView()
+        view.image = #imageLiteral(resourceName: "advanceLogo")
+        return view
+    }()
+    
+    private lazy var advanceTitleLabel: UILabel = {
+        let view = UILabel()
+        view.text = "Pixsells"
+        view.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return view
+    }()
+    
+    private lazy  var adUIView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        view.layer.cornerRadius = 4
+        view.addSubview(adTextLabel)
+        adTextLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
+        return view
+    }()
+    
+    private lazy var adTextLabel: UILabel = {
+        let view = UILabel()
+        view.text = "Ad"
+        view.textColor = .white
+        view.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
+        return view
+    }()
+    
+    private lazy var adDescriptionLabel: UILabel = {
+        let view = UILabel()
+        view.text = "Make design process easier..."
+        view.textColor = .lightGray
+        view.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        return view
+    }()
+    
+    private lazy  var viewMoreLabel: UILabel = {
+        let view = UILabel()
+        view.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        view.textColor = .blue
+        view.text = "View More"
+        return view
+    }()
+    
+    private lazy var adAnimationImage: UIImageView = {
+        let view  = UIImageView()
+        view.image = #imageLiteral(resourceName: "animImage")
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -202,7 +302,8 @@ class HomeViewController: UIViewController{
         view.addSubview(youStoryUIView)
         view.addSubview(addYouStoryLabel)
         view.addSubview(friendStoryUIView)
-//        view.addSubview(friendsStoryCollectionView)
+        view.addSubview(advanceUIView)
+//        view.addSubview(adUIView)
     }
     
     
@@ -243,6 +344,11 @@ class HomeViewController: UIViewController{
             make.right.equalToSuperview()
         }
         
+        advanceUIView.snp.makeConstraints { (make) in
+            make.bottom.equalTo(view.safeArea.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(76)
+        }
         
     }
 }
