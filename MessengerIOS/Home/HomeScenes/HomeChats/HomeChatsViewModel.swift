@@ -26,6 +26,6 @@ class HomeChatsViewModel {
     }
     
     func fetchHomeChats() {
-        
+        homeChats.append(HomeChats(image: #imageLiteral(resourceName: "martin"), fullName: "Martin Randolph", stringText: "You:", chatsText: "What's man!", time: "9:40 AM", roundedImage: #imageLiteral(resourceName: "read")))
     }
 }

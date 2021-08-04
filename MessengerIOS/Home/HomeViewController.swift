@@ -15,6 +15,10 @@ class HomeViewController: UIViewController{
         return FriendsStoryViewModel(delegate: self)
     }()
     
+    private lazy var chatsViewModel: HomeChatsViewModel = {
+        return HomeChatsViewModel(delegate: self)
+    }()
+    
     private lazy var profileTabBarImage: UIImageView = {
         let view = UIImageView()
         view.image = #imageLiteral(resourceName: "profileImage")
@@ -278,11 +282,24 @@ class HomeViewController: UIViewController{
         return view
     }()
     
+    private lazy var chatsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.layer.masksToBounds = true
+        tableView.register(HomeChatsCell.self, forCellReuseIdentifier: "HomeChatsCell")
+//        tableView.rowHeight = 100
+        tableView.backgroundColor = .clear
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10000, bottom: 0, right: 0)
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
         viewModel.fetchFriendsStory()
+        chatsViewModel.fetchHomeChats()
         
         navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.barStyle = .default
@@ -303,7 +320,7 @@ class HomeViewController: UIViewController{
         view.addSubview(addYouStoryLabel)
         view.addSubview(friendStoryUIView)
         view.addSubview(advanceUIView)
-//        view.addSubview(adUIView)
+        view.addSubview(chatsTableView)
     }
     
     
@@ -350,6 +367,11 @@ class HomeViewController: UIViewController{
             make.height.equalTo(76)
         }
         
+        chatsTableView.snp.makeConstraints { (make) in
+            make.top.equalTo(storyViews.snp.bottom).offset(8)
+            make.bottom.equalTo(advanceUIView.snp.top)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
     }
 }
 
@@ -373,6 +395,34 @@ extension HomeViewController: FriendsStoryDelegate {
     }
 }
 
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return chatsViewModel.homeChats.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeChatsCell", for: indexPath) as! HomeChatsCell
+        
+        let chatsData = chatsViewModel.homeChats[indexPath.section]
+        cell.setupData(homeChats: chatsData)
+        cell.layer.cornerRadius = 10
+        cell.contentView.layer.masksToBounds = true
+//        cell.backgroundColor = .clear
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.clear.cgColor
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell.clipsToBounds = true
+        return cell
+    }
+}
+
+extension HomeViewController: HomeChatsDelegate{
+    func loadHomeChats() {
+        chatsTableView.reloadData()
+    }
+}
 
 extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){
