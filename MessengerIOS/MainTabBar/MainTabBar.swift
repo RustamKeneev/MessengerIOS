@@ -12,7 +12,7 @@ class MainTabBar: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         makeTransparentTabbar()
 
         
