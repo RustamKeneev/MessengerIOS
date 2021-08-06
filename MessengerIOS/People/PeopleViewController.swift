@@ -117,6 +117,12 @@ class PeopleViewController: UIViewController {
         return view
     }()
     
+    private lazy var yourStoryUIView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
@@ -133,6 +139,7 @@ class PeopleViewController: UIViewController {
     func setupAddSubViews()  {
         view.addSubview(navView)
         view.addSubview(searchTextField)
+        view.addSubview(yourStoryUIView)
     }
     
     func setupMakeContraints() {
@@ -146,6 +153,12 @@ class PeopleViewController: UIViewController {
             make.top.equalTo(navView.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(36)
+        }
+        
+        yourStoryUIView.snp.makeConstraints { (make) in
+            make.top.equalTo(searchTextField.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(72)
         }
     }
 }
